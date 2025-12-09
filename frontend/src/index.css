@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+    --card-bg: rgba(255, 255, 255, 0.2);
+    --card-border: rgba(255, 255, 255, 0.3);
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+  }
+
+  .theme-dark {
+    --bg-gradient: radial-gradient(circle at 20% 20%, #111827, #0b1021 40%, #020617 80%);
+    --card-bg: rgba(17, 24, 39, 0.55);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #e2e8f0;
+    --text-secondary: #cbd5e1;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    transition: background 0.6s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+  
+  /* Smooth section transitions */
+  .section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
+@layer components {
+  .glass-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    @apply backdrop-blur-lg rounded-2xl shadow-xl;
+  }
+  
+  .glass-button {
+    @apply bg-gradient-to-r from-primary-500 to-accent-500 text-white px-6 py-3 rounded-xl font-medium hover:shadow-lg transition-all duration-300 hover:scale-105;
+  }
+  
+  .glass-input {
+    @apply bg-white/30 backdrop-blur-sm border border-white/40 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500;
+  }
+  
+  .status-sold {
+    @apply bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .status-pending {
+    @apply bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .status-rejected {
+    @apply bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  /* Landing page specific styles */
+  .glass-card {
+    @apply bg-white/20 backdrop-blur-lg border border-white/30 rounded-2xl shadow-xl;
+    transition: all 0.3s ease;
+  }
+  
+  .glass-card:hover {
+    @apply shadow-2xl;
+    transform: translateY(-5px);
+  }
+  
+  /* Video background styles */
+  video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Smooth scroll snap */
+  @supports (scroll-snap-type: y mandatory) {
+    .section {
+      scroll-snap-type: y mandatory;
+    }
+  }
+}
